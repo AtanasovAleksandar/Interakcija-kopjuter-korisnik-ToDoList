@@ -1,0 +1,83 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style/style.css">
+    <title>ToDoList</title>
+    <link rel="stylesheet" href="style/style.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body ng-app="ToDoList" ng-controller="toDoCtrl">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>ToDoList</h1>
+                <h3>What need to be done ?</h3>
+                <input ng-keydown="clickEvent($event)" type="text" class="form-control" name="newToDo" ng-model="newToDo"
+                    placeholder="What need to be done ?">
+
+                <div class="col-xs-12">
+
+                    <div ng-repeat="item in itemList|ourFilter:filterParam" class="task-container">
+                        <div class="time">
+                            Time: <input type="time" id="myTime">
+                            <button onclick="myFunction()">Set time</button>
+                        </div>
+
+                        <script>
+                            function myFunction() {
+                                document.getElementById("myTime").value = "22:53:05";
+                            }
+                        </script>
+
+
+                        <label class="check-box">
+                            <input type="checkbox" ng-model="item.doneWork">
+                            <span class="checkmark"></span>
+                        </label>
+                        <span class="list-to-do" ng-class="{'workDone': item.doneWork}"> {{item.title}} </span>
+                        <span ng-click="removeElement($index)" class="glyphicon glyphicon-remove pull-right"></span>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row" ng-if="itemList.length > 0">
+            <div class="col-xs-3 items-left"> {{calculatNotDone()}} items left</div>
+
+
+            <div class="col-xs-6">
+                <button class="btn btn-primary" ng-click="filterList('all')">all</button>
+                <button class="btn btn-primary" ng-click="filterList('active')">Active</dibuttonv>
+                    <button class="btn btn-primary" ng-click="filterList('complited')">Completed</button>
+            </div>
+
+            <div class="col-xs-3">
+                <button class="btn btn-danger" ng-click="removeComplited()"> Clear Completed </button>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+<script src="js/modul.js"></script>
+<script src="js/controlers.js"></script>
+
+
+</html>
