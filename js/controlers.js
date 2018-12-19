@@ -2,6 +2,7 @@ app.controller('toDoCtrl', function ($scope) {
 
     $scope.itemList = [];
     $scope.filterParam = 'all';
+    $scope.timeSetet = Number;
 
 
     $scope.addItem = function () {
@@ -59,6 +60,17 @@ app.controller('toDoCtrl', function ($scope) {
         // }
         $scope.filterParam = type
     }
+
+    $scope.getTime = function () {
+        var startTime = document.getElementById("startTime");
+        var valueSpan = document.getElementById("value");
+
+        startTime.addEventListener("input", function () {
+            valueSpan.innerText = startTime.value;
+        }, false);
+        $scope.timeSetet = startTime.value;
+        console.log($scope.timeSetet);
+    }
 });
 
 app.filter('ourFilter', function () {
@@ -82,14 +94,14 @@ app.filter('ourFilter', function () {
                 for (var i = 0; i < array.length; i++) {
                     if (array[i].doneWork == true) {
                         returnArray.push(array[i])
-                       
+
                     }
                 }
                 break
             }
         }
 
-            return returnArray
+        return returnArray
 
     }
 })

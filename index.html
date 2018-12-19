@@ -31,8 +31,8 @@
 
                     <div ng-repeat="item in itemList|ourFilter:filterParam" class="task-container">
                         <div class="time">
-                            Time: <input type="time" id="myTime">
-                            <button onclick="myFunction()">Set time</button>
+                            Time: <input type="time" id="startTime">
+                            <button ng-click="getTime()">Set time</button>
                         </div>
 
                         <script>
